@@ -65,6 +65,39 @@ git push -u <远程仓库别名> <本地仓库分支>:<远程仓库分支>
 14.将远程仓库拉取到本地仓库
 git pull <远程仓库名> <远程分支名>:<本地分支名>     //省略远程仓库名、远程分支名和本地分支名默认拉取别名为origin的远程仓库的main分支到本地仓库main分支
 
+15.查看分支列表
+git branch
+
+16.创建分支
+git branch <branch_name>
+
+17.切换分支
+git switch <branch_name>                    //推荐使用
+git checkout <branch_name>                  //不推荐
+
+18.合并分支:
+优点:不会破坏原分支的提交记录，方便回溯查看
+缺点:会产生额外的提交节点，分支图比较复杂
+git merge <branch_name>                     //需却换到合并后的目标分支然后再执行合并操作
+
+19.删除分支
+git branch -d branch_name                   //已合并
+git branch -D branch_name                   //未合并
+
+20.变基:
+优点:不会新增额外的提交记录，形成线性历史，比较干净直观
+缺点:会改变提交历史，改变当前分支branch out的节点，避免在共享分支上使用
+git rebase <branch_name>                    //将当前分支变基到<branch_name>
+
+21.分支合并冲突
+两个分支未修改同一文件的同一处位置，Git自动合并
+两个分支修改了同一文件的同一处位置，产生冲突
+解决方法:
+step1:  手动修改冲突文件，合并冲突内容
+step2:  添加到暂存区 git add 
+step3:  提交修改    git commit 
+终止合并:不想执行合并操作，可以使用下面命令终止合并
+git merge --abort
 
 
 文件".gitignore"的作用:Git会忽略.gitignore里面写的文件名(支持通配符)
